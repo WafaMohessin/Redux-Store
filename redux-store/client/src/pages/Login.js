@@ -9,41 +9,35 @@ import { nullableTypeAnnotation } from '@babel/types';
 
 
 function Login(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' });
-    const [login, { error }] = useMutation(LOGIN);
-  
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
 
-      try {
-        const mutationResponse = await login({
-            variables: { email: formState.email, password: formState.password },
-          });
-          const token = mutationResponse.data.login.token;
-          Auth.login(token);
-        } catch (e) {
-          console.log(e);
-        }
-      };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-      }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-
-          ...formState,
-            
-                  formState({
-                      [name]: value
-                  });
-              };
-
-          return (
-
+  return (
     <div className="container my-1">
-         <Link to="/signup">← Go to Signup </Link>
-            <h2>Login</h2>    
+      <Link to="/signup">← Go to Signup</Link>
+
+      <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
@@ -55,6 +49,7 @@ function Login(props) {
             onChange={handleChange}
           />
         </div>
+
         <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input

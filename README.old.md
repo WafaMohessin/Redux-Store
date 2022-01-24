@@ -1,2 +1,2 @@
 # Redux-Store
-iN this app 
+In this app I am creating a shopping store 
