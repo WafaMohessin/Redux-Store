@@ -15,6 +15,12 @@ import Detail from './pages/Detail';
 
 
 
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Nav from './components/Nav';
+
+
+
 function App() {
   return (
     <div className="App">
